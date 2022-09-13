@@ -6,6 +6,6 @@ namespace EcomXamarin
 {
     static class AppSettings
     {
-        public static string ApiUrl = "http://localhost:5000/";
+        public static string ApiUrl = "http://10.6.17.174:45457/";
     }
 }

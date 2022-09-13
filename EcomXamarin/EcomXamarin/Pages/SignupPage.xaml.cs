@@ -29,7 +29,8 @@ namespace EcomXamarin.Pages
                 var response = await ApiService.RegisterUser(EntName.Text, EntEmail.Text, EntPassword.Text);
                 if (response)
                 {
-                    await DisplayAlert("Hi", "Your account has been created", "Alright");
+                    await DisplayAlert("Success!", "Your account has been created", "Alright");
+                    await Navigation.PushModalAsync(new LoginPage());
                 }
                 else
                 {
@@ -37,6 +38,11 @@ namespace EcomXamarin.Pages
                 }
             }
             
+        }
+
+        private async void BtnLogin_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new LoginPage());
         }
     }
 }
