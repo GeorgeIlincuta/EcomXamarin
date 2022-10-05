@@ -29,7 +29,7 @@
             </Grid>
             <ListView x:Name="LvOrders"
                       HasUnevenRows="True"
-                      ItemTapped="LvOrders_ItemTapped">
+                      ItemSelected="LvOrders_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

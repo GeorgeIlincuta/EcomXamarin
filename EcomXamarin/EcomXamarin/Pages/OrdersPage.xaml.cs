@@ -38,9 +38,11 @@ namespace EcomXamarin.Pages
             Navigation.PopModalAsync();
         }
 
-        private void LvOrders_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void LvOrders_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Navigation.PushModalAsync(new OrdersDetailPage());
+            var obj = (OrderByUser)e.SelectedItem;
+            int orderId = Convert.ToInt32(obj.id);
+            Navigation.PushModalAsync(new OrdersDetailPage(orderId));
         }
     }
 }

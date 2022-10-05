@@ -15,22 +15,32 @@ namespace EcomXamarin.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrdersDetailPage : ContentPage
     {
-        public ObservableCollection<Order> OrderDetail;
-        public OrdersDetailPage()
+        public ObservableCollection<OrderDetail> OrderDetail;
+        public OrdersDetailPage(int orderId)
         {
             InitializeComponent();
-            OrderDetail = new ObservableCollection<Order>();
-            GetOrderDetails();
+            OrderDetail = new ObservableCollection<OrderDetail>();
+            GetOrderDetails(orderId);
         }
 
-        private async void GetOrderDetails()
+        private async void GetOrderDetails(int orderId)
         {
-            var orders = await ApiService.GetOrderDetails(Preferences.Get("userId", 0));
+            var orders = await ApiService.GetOrderDetails(orderId);
+            OrderDetail test = new OrderDetail();
             foreach (var order in orders)
-            {
-                OrderDetail.Add(order);
+            {   
+                test.id = order.orderDetails.Select(x => x.id).FirstOrDefault();
+                test.price = order.orderDetails.Select(x => x.price).FirstOrDefault();
+                test.qty = order.orderDetails.Select(x => x.qty).FirstOrDefault();
+                test.totalAmount = order.orderDetails.Select(x => x.totalAmount).FirstOrDefault();
+                test.orderId = order.orderDetails.Select(x => x.orderId).FirstOrDefault();
+                test.productId = order.orderDetails.Select(x => x.productId).FirstOrDefault();
+                test.product = order.orderDetails.Select(x => x.product).FirstOrDefault();
+                 
+                OrderDetail.Add(test);
             }
             LvOrderDetail.ItemsSource = OrderDetail;
+            LblTotalPrice.Text = orders.Select(x => x.id).FirstOrDefault().ToString();
         }
 
         private void TapBack_Tapped(object sender, EventArgs e)

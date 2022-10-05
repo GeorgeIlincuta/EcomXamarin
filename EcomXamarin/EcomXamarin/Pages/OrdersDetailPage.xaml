@@ -35,7 +35,8 @@
                         <ViewCell>
                             <StackLayout Padding="20">
                                 <Label TextColor="Black"
-                                       FontSize="Medium" />
+                                       FontSize="Medium" 
+                                       Text="{Binding }"/>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="3.3*" />
@@ -56,7 +57,7 @@
                                                HorizontalOptions="Center" />
                                         <Label TextColor="#80574D"
                                                HorizontalOptions="Center" 
-                                               Text="{Binding price}"/>
+                                               Text="{Binding price, StringFormat='{0}$'}" />
                                     </StackLayout>
                                     <StackLayout Grid.Column="2">
                                         <Label Text="Sub Total"
@@ -64,7 +65,7 @@
                                                HorizontalOptions="Center" />
                                         <Label TextColor="#80574D"
                                                HorizontalOptions="Center" 
-                                               Text="{Binding totalAmount}"/>
+                                               Text="{Binding totalAmount, StringFormat='{0}$'}"/>
                                     </StackLayout>
                                 </Grid>
                             </StackLayout>
@@ -80,8 +81,7 @@
                         <Label HorizontalOptions="End"
                                x:Name="LblTotalPrice"
                                FontSize="Medium"
-                               TextColor="#80574D" 
-                               Text="{Binding orderTotal}"/>
+                               TextColor="#80574D" />
                     </StackLayout>
                 </ListView.Footer>
             </ListView>

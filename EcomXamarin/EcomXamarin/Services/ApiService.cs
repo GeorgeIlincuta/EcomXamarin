@@ -158,12 +158,12 @@ namespace EcomXamarin.Services
             return JsonConvert.DeserializeObject<List<OrderByUser>>(response);
         }
 
-        public static async Task<List<Order>> GetOrderDetails(int userId)
+        public static async Task<List<Order>> GetOrderDetails(int orderId)
         {
             await TokenValidator.CheckTokenValidity();
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("accessToken", string.Empty));
-            var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Orders/OrderDetails/" + userId);
+            var response = await httpClient.GetStringAsync(AppSettings.ApiUrl + "api/Orders/OrderDetails/" + orderId);
             return JsonConvert.DeserializeObject<List<Order>>(response);
         }
     }
